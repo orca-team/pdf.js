@@ -25,12 +25,12 @@ jobs:
         run: cd build/dist && ls && pwd
       - name: change package name
         run: >-
-          sed -i 's/"name": "pdfjs-dist"/"name": "@orca-fe\/pdfjs-dist-browserify"/g' package.json
+          sed -i 's/"name": "pdfjs-dist"/"name": "@orca-fe\/pdfjs-dist-browserify"/g' ./package.json
       - name: print
-        run: cat package.json
+        run: cat ./package.json
       - name: replace require canvas
-        run: sed -i 's/require("canvas")/{}/g' build/pdf.js
-      - run: sed -i 's/require("canvas")/{}/g' build/pdf.min.js
-      - run: npm publish --access=public
+        run: sed -i 's/require("canvas")/{}/g' ./build/pdf.js
+      - run: sed -i 's/require("canvas")/{}/g' ./build/pdf.min.js
+      - run: pwd && npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
