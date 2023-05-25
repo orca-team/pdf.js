@@ -506,7 +506,7 @@ async function _fetchDocument(worker, source) {
   const workerId = await worker.messageHandler.sendWithPromise(
     "GetDocRequest",
     source,
-    source.data ? [source.data.buffer] : null
+    // source.data ? [source.data.buffer] : null
   );
 
   if (worker.destroyed) {
