@@ -1,4 +1,9 @@
 name: Publish website
+on:
+  push:
+    branches:
+      - master
+if: false
 permissions:
   contents: read
 
