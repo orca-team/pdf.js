@@ -31,6 +31,7 @@ jobs:
         working-directory: build/dist
         run: |
           sed -i 's/"name": "pdfjs-dist"/"name": "@orca-fe\/pdfjs-dist-browserify"/g' ./package.json
+          run: sed -i '/"canvas":/d' ./package.json
           cat ./package.json
       - name: replace require canvas
         working-directory: build/dist
