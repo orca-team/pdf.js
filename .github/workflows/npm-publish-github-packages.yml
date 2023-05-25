@@ -22,7 +22,7 @@ jobs:
       - name: build
         run: npx gulp dist-pre
       - name: cd dist
-        run: cd build/dist
+        run: cd build/dist && ls && pwd
       - name: change package name
         run: >-
           sed -i 's/"name": "pdfjs-dist"/"name": "@orca-fe\/pdfjs-dist-browserify"/g' package.json
