@@ -25,7 +25,7 @@ jobs:
         run: npx gulp dist-pre
       - name: change package version
         run: |
-          STABLE_VERSION = $(node -e "console.log(JSON.parse(require('fs').readFileSync('./pdfjs.config').toString()).stableVersion)")
+          STABLE_VERSION=$(node -e "console.log(JSON.parse(require('fs').readFileSync('./pdfjs.config').toString()).stableVersion)")
           sed -i 's/"version": "[^"]+"/"version": "${STABLE_VERSION}"/g' build/dist/package.json
       - name: change package name
         working-directory: build/dist
