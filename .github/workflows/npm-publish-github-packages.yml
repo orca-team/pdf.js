@@ -21,16 +21,17 @@ jobs:
         run: npm i && npm i gulp -D
       - name: build
         run: npx gulp dist-pre
-      - name: cd dist
-        run: cd build/dist && ls && pwd
       - name: change package name
-        run: >-
+        working-directory: build/dist
+        run: |
           sed -i 's/"name": "pdfjs-dist"/"name": "@orca-fe\/pdfjs-dist-browserify"/g' ./package.json
-      - name: print
-        run: cat ./package.json
+          cat ./package.json
       - name: replace require canvas
-        run: sed -i 's/require("canvas")/{}/g' ./build/pdf.js
-      - run: sed -i 's/require("canvas")/{}/g' ./build/pdf.min.js
-      - run: pwd && npm publish --access=public
+        working-directory: build/dist
+        run: |
+          sed -i 's/require("canvas")/{}/g' ./build/pdf.js
+          sed -i 's/require("canvas")/{}/g' ./build/pdf.min.js
+      - working-directory: build/dist
+        run: pwd && npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
